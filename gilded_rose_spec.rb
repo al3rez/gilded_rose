@@ -7,38 +7,36 @@ require_relative './gilded_rose'
 
 class GildedRoseTest < MiniTest::Test
   def test_normal_before_sell_date
-    item = GildedRose.new(name: 'normal', days_remaining: 5, quality: 10)
+    gilded_rose = GildedRose.new(name: 'normal', days_remaining: 5, quality: 10)
 
-    item.tick
+    gilded_rose.tick
 
-    assert_equal 9, item.quality
-    assert_equal 4, item.days_remaining
     assert_equal gilded_rose.days_remaining, 4
     assert_equal gilded_rose.quality, 9
   end
 
   def test_normal_on_sell_date
-    item = GildedRose.new(name: 'normal', days_remaining: 0, quality: 10)
+    gilded_rose = GildedRose.new(name: 'normal', days_remaining: 0, quality: 10)
 
-    item.tick
+    gilded_rose.tick
 
     assert_equal gilded_rose.days_remaining, -1
     assert_equal gilded_rose.quality, 8
   end
 
   def test_normal_after_sell_date
-    item = GildedRose.new(name: 'normal', days_remaining: -10, quality: 10)
+    gilded_rose = GildedRose.new(name: 'normal', days_remaining: -10, quality: 10)
 
-    item.tick
+    gilded_rose.tick
 
     assert_equal gilded_rose.days_remaining, -11
     assert_equal gilded_rose.quality, 8
   end
 
   def test_normal_of_zero_quality
-    item = GildedRose.new(name: 'normal', days_remaining: 5, quality: 0)
+    gilded_rose = GildedRose.new(name: 'normal', days_remaining: 5, quality: 0)
 
-    item.tick
+    gilded_rose.tick
 
     assert_equal gilded_rose.days_remaining, 4
     assert_equal gilded_rose.quality, 0
